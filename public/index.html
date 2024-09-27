@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#converter">Converter</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <h1>Crypto Tracker</h1>
+    </header>
+
+    <section id="home" class="home-section">
+        <h2>Top Cryptocurrencies</h2>
+        <div class="crypto-list">
+            <div class="crypto-item">
+                <img src="bitcoin-logo.png" alt="Bitcoin">
+                <div>
+                    <h3>Bitcoin</h3>
+                    <p>Current Price: $40,000</p>
+                    <p>Change (24h): <span class="positive">+3.5%</span></p>
+                    <p>Change (7d): <span class="negative">-1.2%</span></p>
+                </div>
+            </div>
+            <div class="crypto-item">
+                <img src="ethereum-logo.png" alt="Ethereum">
+                <div>
+                    <h3>Ethereum</h3>
+                    <p>Current Price: $3,000</p>
+                    <p>Change (24h): <span class="positive">+2.1%</span></p>
+                    <p>Change (7d): <span class="negative">-0.5%</span></p>
+                </div>
+            </div>
+            <div class="crypto-item">
+                <img src="ripple-logo.png" alt="Ripple">
+                <div>
+                    <h3>Ripple</h3>
+                    <p>Current Price: $0.75</p>
+                    <p>Change (24h): <span class="negative">-1.0%</span></p>
+                    <p>Change (7d): <span class="positive">+5.0%</span></p>
+                </div>
+            </div>
+            <div class="crypto-item">
+                <img src="litecoin-logo.png" alt="Litecoin">
+                <div>
+                    <h3>Litecoin</h3>
+                    <p>Current Price: $150</p>
+                    <p>Change (24h): <span class="positive">+4.0%</span></p>
+                    <p>Change (7d): <span class="negative">-2.0%</span></p>
+                </div>
+            </div>
+            <div class="crypto-item">
+                <img src="cardano-logo.png" alt="Cardano">
+                <div>
+                    <h3>Cardano</h3>
+                    <p>Current Price: $1.20</p>
+                    <p>Change (24h): <span class="positive">+3.0%</span></p>
+                    <p>Change (7d): <span class="negative">-1.5%</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="converter" class="converter-section">
+        <h2>Crypto Converter</h2>
+        <form id="converter-form">
+            <label for="from">From:</label>
+            <select id="from" name="from-crypto">
+                <option value="bitcoin">Bitcoin (BTC)</option>
+                <option value="ethereum">Ethereum (ETH)</option>
+                <option value="ripple">Ripple (XRP)</option>
+                <option value="litecoin">Litecoin (LTC)</option>
+                <option value="cardano">Cardano (ADA)</option>
+            </select>
+
+            <label for="to">To:</label>
+            <select id="to" name="to-crypto">
+                <option value="bitcoin">Bitcoin (BTC)</option>
+                <option value="ethereum">Ethereum (ETH)</option>
+                <option value="ripple">Ripple (XRP)</option>
+                <option value="litecoin">Litecoin (LTC)</option>
+                <option value="cardano">Cardano (ADA)</option>
+            </select>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" value="1" />
+
+            <button type="submit">Convert</button>
+        </form>
+        <p id="conversion-result"></p>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>Welcome to Crypto Tracker! We provide real-time cryptocurrency tracking and conversion services. Our platform is designed to keep you updated on the latest trends in the cryptocurrency market.</p>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Crypto Tracker. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.getElementById('converter-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const fromCrypto = document.getElementById('from').value;
+    const toCrypto = document.getElementById('to').value;
+    const amount = parseFloat(document.getElementById('amount').value);
+    
+    // Simulated conversion rates for demonstration purposes
+    const conversionRates = {
+        bitcoin: { bitcoin: 1, ethereum: 0.025, ripple: 1500, litecoin: 12.5, cardano: 2000 },
+        ethereum: { bitcoin: 40, ethereum: 1, ripple: 60000, litecoin: 500, cardano: 80000 },
+        ripple: { bitcoin: 0.00067, ethereum: 0.000017, ripple: 1, litecoin: 0.0083, cardano: 1.33 },
+        litecoin: { bitcoin: 0.08, ethereum: 0.002, ripple: 120, litecoin: 1, cardano: 160 },
+        cardano: { bitcoin: 0.0005, ethereum: 0.0000125, ripple: 0.75, litecoin: 0.00625, cardano: 1 },
+    };
+    
+    // Calculate the conversion
+    const conversionResult = amount * conversionRates[fromCrypto][toCrypto];
+    
+    // Display the result
+    document.getElementById('conversion-result').innerText = `Result: ${conversionResult.toFixed(4)} ${toCrypto.toUpperCase()}`;
+});
+    </script>
+</body>
+</html>
